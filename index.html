@@ -2,37 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>2048 Game</title>
 </head>
 
 <body>
-    <main class="wrapper">
-        <header>
-            <h1 class="title">2048</h1>
-            <section class="score-container">
-                <div>
-                    <span class="label">Score</span>
-                    <span data-score>0</span>
-                </div>
-                <div >
-                    <span class="label">Best</span>
-                    <span data-best>0</span>
-                </div>
-            </section>
-        </header>
+<main class="wrapper">
+    <header>
+        <h1 class="title">2048</h1>
+        <section class="score-container">
+            <div>
+                <span class="label">Score</span>
+                <span data-score>0</span>
+            </div>
+            <div>
+                <span class="label">Best</span>
+                <span data-best>0</span>
+            </div>
+        </section>
+    </header>
 
-        <ul data-board></ul>
+    <ul data-board>
+        <li data-message>
+            <p>Game Over</p>
+            <button>Play Again?</button>
+        </li>
+    </ul>
 
-        <footer>
-            <b>HOW TO PLAY:</b>
-            Use your arrow keys to move the tiles. When two tiles with the
-            same number touch, they merge into one!
-        </footer>
-    </main>
-    <script type="module" src="/src/main.ts"></script>
+    <footer>
+        <b>HOW TO PLAY:</b>
+        Use your arrow keys to move the tiles. When two tiles with the
+        same number touch, they merge into one!
+    </footer>
+</main>
+<script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ const GRID_SIZE = 4;
 
 export default class Board {
     private _cells: Cell[] = [];
-    private _element: HTMLElement;
+    private readonly _element: HTMLElement;
 
     constructor(element: HTMLElement | null) {
         if (element == null) throw new Error("Board cannot be null");

@@ -22,7 +22,7 @@ const keyMap: FunctionMap = {
 };
 
 export default class Events {
-    private _board: Board;
+    private readonly _board: Board;
     private _events: FunctionMap = {};
 
     constructor(board: Board) {
@@ -34,21 +34,20 @@ export default class Events {
         window.addEventListener(
             "keydown",
             (e) => this.move(e.key.replace("Arrow", "").toLowerCase()),
-            { once: true }
+            {once: true}
         );
     }
 
     private async move(direction: string) {
         if (this.isEnded()) return this.trigger("gameEnded");
 
-        if (direction in keyMap)
-            await this.slide(keyMap[direction](this._board));
+        if (direction in keyMap) await this.slide(keyMap[direction](this._board));
         else this.bindEvents();
     }
 
     private isEnded(): boolean {
         return Object.keys(keyMap).every((direction) => {
-            return this.canMove(keyMap[direction](this._board)) === false;
+            return !this.canMove(keyMap[direction](this._board));
         });
     }
 
@@ -64,18 +63,19 @@ export default class Events {
 
     private async slide(cells: Cell[][]) {
         if (this.canMove(cells)) {
-            await this.slideTiles(cells);
+            await Events.slideTiles(cells);
             this._board.cells.forEach((cell) => {
                 const score = cell.mergeTiles();
                 if (score !== 0) this.trigger("scoreUp", score);
             });
+
             this._board.randomEmptyCell().tile = new Tile(this._board);
         }
 
         this.bindEvents();
     }
 
-    private slideTiles(cells: Cell[][]) {
+    private static slideTiles(cells: Cell[][]) {
         return Promise.all(
             cells.flatMap((group: Cell[]) => {
                 const promises = [];

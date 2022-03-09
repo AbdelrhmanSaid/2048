@@ -1,9 +1,9 @@
 import Tile from "./Tile";
 
 export default class Cell {
-    private _x: number;
-    private _y: number;
-    private _element: HTMLElement;
+    private readonly _x: number;
+    private readonly _y: number;
+    private readonly _element: HTMLElement;
     private _tile: Tile | null = null;
     private _tileToMerge: Tile | null = null;
 
@@ -67,8 +67,10 @@ export default class Cell {
         return this.tile.value;
     }
 
-    public removeTile() {
+    public removeTiles() {
         this.tile?.remove();
+        this.tileToMerge?.remove();
+        this.tileToMerge = null;
         this.tile = null;
     }
 }

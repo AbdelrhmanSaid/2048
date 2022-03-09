@@ -1,7 +1,7 @@
 import Board from "./Board";
 
 export default class Tile {
-    private _element: HTMLElement;
+    private readonly _element: HTMLElement;
     private _value: number;
     private _x: number;
     private _y: number;
