@@ -113,7 +113,7 @@ header .title {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     background: rgba(238, 228, 218, 0.73);
     opacity: 1;
     z-index: 999;
@@ -136,9 +136,24 @@ header .title {
     border-radius: 3px;
     background-color: #8F7A66;
     color: #faf8ef;
-    font-size: 18px;
+    font-size: 1rem;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    [data-message] {
+        gap: 0.75rem;
+    }
+
+    [data-message] p {
+        font-size: 3rem;
+    }
+
+    [data-message] button {
+        padding: 7.5px 15px;
+        font-size: 0.75rem;
+    }
 }
 
 [data-cell] {
@@ -159,6 +174,12 @@ header .title {
     border-radius: 5px;
     animation: show 200ms ease-in-out;
     transition: 100ms ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    [data-tile] {
+        font-size: 1.5rem;
+    }
 }
 
 @keyframes show {
@@ -222,10 +243,4 @@ header .title {
 footer b {
     display: block;
     margin-bottom: 5px;
-}
-
-@media screen and (max-width: 768px) {
-    [data-tile] {
-        font-size: 1.5rem;
-    }
 }

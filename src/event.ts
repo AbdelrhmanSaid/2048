@@ -43,6 +43,7 @@ export default class Events {
 
         if (direction in keyMap) await this.slide(keyMap[direction](this._board));
         else this.bindEvents();
+        this.trigger("moved");
     }
 
     private isEnded(): boolean {
