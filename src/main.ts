@@ -26,8 +26,11 @@ events.on("scoreUp", (score: number) => {
 });
 
 events.on("gameEnded", () => {
-    localStorage.setItem("best-score", scoreField.innerHTML);
-    bestField.innerHTML = scoreField.innerHTML;
+    if (+scoreField.innerHTML > +localStorage.getItem("best-score")!) {
+        localStorage.setItem("best-score", scoreField.innerHTML);
+        bestField.innerHTML = scoreField.innerHTML;
+    }
+
     gameOver.classList.add("visible");
     events.bindEvents();
 });
