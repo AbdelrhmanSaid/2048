@@ -17,14 +17,14 @@ export default class Tile {
         return this._value;
     }
 
-    public get element(): HTMLElement {
-        return this._element;
-    }
-
     public set value(value) {
         this._value = value;
         this.element.textContent = `${value}`;
         this.element.setAttribute("data-value", `${value}`);
+    }
+
+    public get element(): HTMLElement {
+        return this._element;
     }
 
     public get x(): number {
