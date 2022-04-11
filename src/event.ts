@@ -109,7 +109,7 @@ export default class Events {
         this._events[event] = callback;
     }
 
-    private trigger(event: string, ...args: any[]) {
+    private trigger(event: string, ...args: unknown[]) {
         if (this._events[event]) {
             const handler: Function = this._events[event];
             handler(...args);
