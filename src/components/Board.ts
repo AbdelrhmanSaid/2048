@@ -1,20 +1,20 @@
 import Cell from "./Cell";
 
-const GRID_SIZE = 4;
-
 export default class Board {
     private _cells: Cell[] = [];
     private readonly _element: HTMLElement;
+    public static gridSize: number = 4;
 
     constructor(element: HTMLElement | null) {
         if (element == null) throw new Error("Board cannot be null");
-        element.style.setProperty("--grid-size", GRID_SIZE.toString());
+        element.style.setProperty("--grid-size", `${Board.gridSize}`);
+        document.body.style.setProperty("--f-size", `${Board.gridSize / (Board.gridSize - 2.4)}rem`);
         this._element = element;
 
-        Array(GRID_SIZE * GRID_SIZE)
+        Array(Board.gridSize * Board.gridSize)
             .fill(0)
             .map((_, i: number) => {
-                const cell = new Cell(i % GRID_SIZE, Math.floor(i / GRID_SIZE));
+                const cell = new Cell(i % Board.gridSize, Math.floor(i / Board.gridSize));
                 this._element.append(cell.element);
                 this._cells.push(cell);
             });

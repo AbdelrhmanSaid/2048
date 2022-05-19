@@ -3,6 +3,11 @@ import Board from "./components/Board";
 import Tile from "./components/Tile";
 import "./assets/styles/main.css";
 
+// personal preference only
+if (localStorage.getItem("gridSize")) {
+    Board.gridSize = +localStorage.getItem("gridSize")! ?? 4;
+}
+
 const scoreField = document.querySelector("[data-score]")!;
 const bestField = document.querySelector("[data-best]")!;
 const gameOver = document.querySelector('[data-message]')!;

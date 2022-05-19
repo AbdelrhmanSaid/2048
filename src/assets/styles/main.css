@@ -10,7 +10,7 @@
 
 :root {
     --f-family: "Lato", sans-serif;
-    --f-size: 16px;
+    --f-size: 2.4rem;
 
     --body-bg: #fbf8ef;
     --text-color: #776e65;
@@ -169,7 +169,7 @@ header .title {
     height: var(--cell-size);
     display: grid;
     place-items: center;
-    font-size: 2.4rem;
+    font-size: var(--f-size);
     font-weight: 600;
     border-radius: 5px;
     animation: show 200ms ease-in-out;
@@ -178,7 +178,7 @@ header .title {
 
 @media screen and (max-width: 768px) {
     [data-tile] {
-        font-size: 1.5rem;
+        font-size: calc(var(--f-size) / 2);
     }
 }
 
