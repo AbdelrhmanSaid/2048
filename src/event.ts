@@ -24,10 +24,62 @@ const keyMap: FunctionMap = {
 export default class Events {
     private readonly _board: Board;
     private _events: FunctionMap = {};
+    private touchStartX: number = 0;
+    private touchStartY: number = 0;
 
     constructor(board: Board) {
         this._board = board;
         this.bindEvents();
+        this.bindTouchEvents();
+    }
+
+    private bindTouchEvents() {
+        this._board.element.addEventListener("touchstart", (event: TouchEvent) => {
+            this.touchStartX = event.touches[0].clientX;
+            this.touchStartY = event.touches[0].clientY;
+        });
+
+        this._board.element.addEventListener("touchmove", (event: TouchEvent) => {
+            event.preventDefault();
+        }, { passive: false });
+
+        this._board.element.addEventListener("touchend", (event: TouchEvent) => {
+            if (this.touchStartX === 0 && this.touchStartY === 0) return;
+
+            const touchEndX = event.changedTouches[0].clientX;
+            const touchEndY = event.changedTouches[0].clientY;
+
+            const deltaX = touchEndX - this.touchStartX;
+            const deltaY = touchEndY - this.touchStartY;
+
+            let direction = "";
+            const minSwipeDistance = 30; // Minimum swipe distance in pixels
+
+            if (Math.abs(deltaX) > minSwipeDistance || Math.abs(deltaY) > minSwipeDistance) {
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // Horizontal swipe
+                    if (deltaX > 0) {
+                        direction = "right";
+                    } else {
+                        direction = "left";
+                    }
+                } else {
+                    // Vertical swipe
+                    if (deltaY > 0) {
+                        direction = "down";
+                    } else {
+                        direction = "up";
+                    }
+                }
+            }
+
+            if (direction) {
+                this.move(direction);
+            }
+
+            this.touchStartX = 0;
+            this.touchStartY = 0;
+        });
     }
 
     public bindEvents() {
